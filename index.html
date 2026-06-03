@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Консультация по ИИ — разберёшься, как применить нейросети и агентов в своём деле</title>
+<meta name="description" content="Платная консультация 1-на-1: за один разговор поймёшь, как применить ИИ и агентов в твоём деле. Не курс и не гуру с хайпа — живой практик, который сам строит ИИ-инструменты руками.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0B0D; --panel:#141418; --panel2:#1B1B20;
+    --line:rgba(255,255,255,.10); --line2:rgba(255,255,255,.16);
+    --text:#ECECEE; --muted:#9A9AA2; --faint:#6E6E76;
+    --accent:#D7FF3E; --accent-ink:#0B0B0D;
+    --green:#7CE38B; --red:#FF7A6B;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ink); color:var(--text);
+    font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:"Space Grotesk",sans-serif;line-height:1.1;letter-spacing:-.02em;font-weight:700}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .eyebrow{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  .muted{color:var(--muted)}
+  section{padding:84px 0;border-top:1px solid var(--line)}
+
+  /* Buttons */
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:var(--accent-ink);
+    font-weight:700;font-family:"Space Grotesk",sans-serif;font-size:16px;padding:15px 26px;border-radius:999px;
+    border:none;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease;white-space:nowrap}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(215,255,62,.25)}
+  .btn--ghost{background:transparent;color:var(--text);border:1px solid var(--line2)}
+  .btn--ghost:hover{box-shadow:none;border-color:var(--accent);color:var(--accent)}
+  .btn--lg{font-size:18px;padding:18px 34px}
+  .risk{display:block;margin-top:12px;font-size:14px;color:var(--muted)}
+  .risk b{color:var(--accent);font-weight:600}
+
+  /* Nav */
+  nav{position:sticky;top:0;z-index:50;background:rgba(11,11,13,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:17px;letter-spacing:-.01em}
+  .brand i{color:var(--accent);font-style:normal}
+  .nav-cta{font-size:14px;padding:11px 20px}
+
+  /* Hero */
+  .hero{padding-top:72px;padding-bottom:56px;border-top:none}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+  .hero h1{font-size:clamp(34px,5.2vw,58px);margin:18px 0 22px}
+  .hero h1 .hl{color:var(--accent)}
+  .hero .sub{font-size:clamp(17px,2vw,20px);color:var(--muted);max-width:560px;margin-bottom:28px}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 30px}
+  .chip{display:inline-flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--line);
+    border-radius:999px;padding:9px 15px;font-size:14px;color:var(--text)}
+  .chip svg{flex:none}
+  .hero-visual{aspect-ratio:4/5;border:1.5px dashed var(--line2);border-radius:20px;background:
+    radial-gradient(120% 120% at 70% 10%, rgba(215,255,62,.07), transparent 55%), var(--panel);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px;gap:10px}
+  .hero-visual .ph-emoji{font-size:34px;opacity:.85}
+  .hero-visual .ph-txt{font-size:13.5px;color:var(--faint);max-width:240px;font-family:ui-monospace,Menlo,monospace;line-height:1.5}
+
+  /* Pain mirror */
+  .pain-list{display:grid;gap:14px;margin-top:30px;max-width:780px}
+  .pain{display:flex;gap:14px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .pain .x{flex:none;width:26px;height:26px;border-radius:7px;background:rgba(255,122,107,.12);color:var(--red);
+    display:grid;place-items:center;font-weight:700;font-size:15px}
+  .pain p{font-size:16.5px}
+  .pain-closer{margin-top:26px;font-size:clamp(19px,2.4vw,24px);font-family:"Space Grotesk",sans-serif;font-weight:600;max-width:720px}
+  .pain-closer b{color:var(--accent);font-weight:700}
+
+  /* Steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:38px}
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px}
+  .step .n{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:15px;color:var(--accent-ink);
+    background:var(--accent);width:34px;height:34px;border-radius:9px;display:grid;place-items:center;margin-bottom:16px}
+  .step h3{font-size:19px;margin-bottom:8px}
+  .step p{font-size:15.5px;color:var(--muted)}
+  .format-line{margin-top:26px;font-size:15px;color:var(--muted);display:inline-flex;gap:10px;align-items:center;
+    background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:11px 18px}
+  .format-line b{color:var(--text);font-weight:600}
+
+  /* Compare table */
+  .cmp{margin-top:38px;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .cmp-row{display:grid;grid-template-columns:1.1fr 1fr 1fr 1.05fr;border-bottom:1px solid var(--line)}
+  .cmp-row:last-child{border-bottom:none}
+  .cmp-cell{padding:18px 20px;font-size:15px;border-right:1px solid var(--line)}
+  .cmp-cell:last-child{border-right:none}
+  .cmp-head .cmp-cell{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:14px;background:var(--panel2)}
+  .cmp-head .me{color:var(--accent-ink);background:var(--accent)}
+  .cmp-cell.me{background:rgba(215,255,62,.05);color:var(--text);font-weight:500}
+  .cmp-cell.rowlabel{color:var(--faint);font-family:ui-monospace,Menlo,monospace;font-size:12.5px;text-transform:uppercase;letter-spacing:.08em}
+  .cmp-cell.dim{color:var(--muted)}
+
+  /* Proof */
+  .proof-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:36px}
+  .proof{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;transition:border-color .2s}
+  .proof:hover{border-color:var(--line2)}
+  .proof .tag{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;display:block}
+  .proof p{font-size:16px}
+  .pullquote{margin-top:38px;border-left:3px solid var(--accent);padding:6px 0 6px 24px;
+    font-family:"Space Grotesk",sans-serif;font-size:clamp(20px,2.6vw,27px);font-weight:600;max-width:780px;line-height:1.25}
+  .proof-closer{margin-top:22px;color:var(--muted);font-size:16px}
+  .proof-closer b{color:var(--text);font-weight:600}
+
+  /* Benefits */
+  .benefits{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:36px}
+  .benefit{display:flex;gap:16px;align-items:flex-start;padding:6px 0}
+  .benefit .ic{flex:none;width:30px;height:30px;border-radius:8px;background:rgba(215,255,62,.12);color:var(--accent);display:grid;place-items:center}
+  .benefit b{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:17px;display:block;margin-bottom:3px}
+  .benefit span{color:var(--muted);font-size:15px}
+
+  /* For whom */
+  .cols2{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:36px}
+  .qcard{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px}
+  .qcard h3{font-size:18px;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+  .qcard.yes h3{color:var(--green)} .qcard.no h3{color:var(--red)}
+  .qcard ul{list-style:none;display:grid;gap:13px}
+  .qcard li{display:flex;gap:12px;font-size:15.5px;align-items:flex-start;color:var(--text)}
+  .qcard li .m{flex:none;font-weight:700}
+  .qcard.yes li .m{color:var(--green)} .qcard.no li .m{color:var(--red)}
+  .qcard.no li{color:var(--muted)}
+
+  /* FAQ */
+  .faq{margin-top:34px;display:grid;gap:12px;max-width:840px}
+  details{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  summary{cursor:pointer;padding:20px 22px;font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:17px;
+    list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
+  summary::-webkit-details-marker{display:none}
+  summary .pm{flex:none;width:24px;height:24px;border:1px solid var(--line2);border-radius:6px;display:grid;place-items:center;color:var(--accent);transition:transform .2s;font-size:18px;line-height:1}
+  details[open] summary .pm{transform:rotate(45deg)}
+  details p{padding:0 22px 22px;color:var(--muted);font-size:15.5px}
+
+  /* Price */
+  .price-section{background:linear-gradient(180deg,transparent, rgba(215,255,62,.03))}
+  .price-card{max-width:600px;margin:36px auto 0;background:var(--panel);border:1px solid var(--line2);border-radius:22px;padding:40px;text-align:center;
+    box-shadow:0 30px 80px rgba(0,0,0,.4)}
+  .price-card ul{list-style:none;display:grid;gap:14px;text-align:left;margin:0 auto 28px;max-width:420px}
+  .price-card li{display:flex;gap:12px;font-size:16px;align-items:flex-start}
+  .price-card li .c{flex:none;color:var(--accent);font-weight:700}
+  .price-tag{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(40px,6vw,56px);margin:6px 0 4px}
+  .price-tag .cur{color:var(--accent)}
+  .price-note{color:var(--faint);font-size:13.5px;margin-bottom:26px}
+  .scarcity{display:inline-flex;align-items:center;gap:9px;background:rgba(215,255,62,.08);border:1px solid rgba(215,255,62,.25);
+    color:var(--text);border-radius:999px;padding:9px 17px;font-size:14px;margin-bottom:30px}
+  .scarcity .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(215,255,62,.18)}
+
+  /* Final CTA */
+  .final{text-align:center}
+  .final h2{font-size:clamp(28px,4.2vw,44px);max-width:740px;margin:0 auto 16px}
+  .final p{color:var(--muted);font-size:18px;margin-bottom:30px}
+
+  /* Footer */
+  footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-size:14.5px}
+  .foot-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+  footer a.tg{color:var(--accent);font-weight:600}
+  .sec-head{max-width:760px}
+  .sec-head h2{font-size:clamp(26px,3.6vw,40px);margin:14px 0 0}
+
+  /* Responsive */
+  @media(max-width:860px){
+    .hero-grid{grid-template-columns:1fr;gap:34px}
+    .hero-visual{aspect-ratio:16/10;max-height:300px}
+    .steps{grid-template-columns:1fr}
+    .proof-grid,.benefits,.cols2{grid-template-columns:1fr}
+    section{padding:62px 0}
+    .cmp-row{grid-template-columns:1fr}
+    .cmp-cell{border-right:none;border-bottom:1px solid var(--line);padding:14px 18px}
+    .cmp-cell.rowlabel{background:var(--panel2);color:var(--accent)}
+    .cmp-head{display:none}
+    .cmp-cell::before{content:attr(data-l);display:block;font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;font-family:ui-monospace,Menlo,monospace}
+  }
+  @media(max-width:520px){
+    .wrap{padding:0 18px}
+    .nav-cta{padding:10px 15px;font-size:13px}
+    .price-card{padding:28px 22px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <div class="brand">Вадим <i>Бондаренко</i></div>
+    <a href="https://t.me/vad6272" class="btn nav-cta">Записаться</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Консультация 1-на-1 · ИИ и агенты</span>
+      <h1>Разберёшься, как применить <span class="hl">ИИ и агентов</span> в своём деле — за один разговор</h1>
+      <p class="sub">Не курс и не очередной гуру с хайпа. Живой практик, который сам строит ИИ-инструменты руками: объясню на твоём примере и дам карту — что внедрить под твои задачи и с чего начать завтра.</p>
+      <div class="chips">
+        <span class="chip"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7" stroke="#D7FF3E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>На твоём примере, не «для всех»</span>
+        <span class="chip"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7" stroke="#D7FF3E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Без воды и «купи следующий курс»</span>
+        <span class="chip"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7" stroke="#D7FF3E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Уйдёшь с планом, а не с «вдохновением»</span>
+      </div>
+      <a href="https://t.me/vad6272" class="btn btn--lg">Записаться на консультацию</a>
+      <span class="risk">Не увидел пользы в первые 20 минут — <b>не платишь.</b></span>
+    </div>
+    <div class="hero-visual">
+      <!-- ПЛЕЙСХОЛДЕР: живое лицо повышает доверие у этого аватара -->
+      <div class="ph-emoji">📷</div>
+      <div class="ph-txt">сюда: фото Вадима или короткий видео-кружок «привет, вот как проходит консультация»</div>
+    </div>
+  </div>
+</header>
+
+<!-- PAIN MIRROR -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Знакомо?</span>
+    <div class="pain-list">
+      <div class="pain"><span class="x">✕</span><p>Все вокруг про ИИ-агентов, нейросети, автоматизацию — а у тебя голова кругом и непонятно, с чего начать.</p></div>
+      <div class="pain"><span class="x">✕</span><p>Уже брал курс — оказалась вода и продажа следующего курса. Бросил.</p></div>
+      <div class="pain"><span class="x">✕</span><p>Тыкал ChatGPT сам — выходит не то, не как у других.</p></div>
+      <div class="pain"><span class="x">✕</span><p>Кажется, что это сложно и технически, нужно быть программистом. А копать ютуб неделями некогда.</p></div>
+    </div>
+    <p class="pain-closer">Дело не в тебе. Просто никто не сел рядом и <b>не показал на твоём примере.</b></p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Как это устроено</span>
+      <h2>Как проходит консультация</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="n">1</div>
+        <h3>Разбираем твою ситуацию</h3>
+        <p>До звонка спрошу, чем занимаешься и где теряешь время. На звонке говорим про твои реальные задачи, не абстрактно.</p>
+      </div>
+      <div class="step">
+        <div class="n">2</div>
+        <h3>Объясняю на твоём примере</h3>
+        <p>Что такое ИИ-агенты и нейросети — человеческим языком, сразу на твоих задачах. Без терминов, которые ничего не значат.</p>
+      </div>
+      <div class="step">
+        <div class="n">3</div>
+        <h3>Уходишь с картой</h3>
+        <p>Какие 2–3 инструмента внедрить первыми, в каком порядке, с чего начать завтра. Плюс запись и конспект — чтобы не держать в голове.</p>
+      </div>
+    </div>
+    <div class="format-line"><b>~90 минут</b> · видеозвонок (Telegram / Zoom — как удобно)</div>
+  </div>
+</section>
+
+<!-- DIFFERENTIATION -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Отстройка</span>
+      <h2>Чем это отличается от курса и от AI-гуру</h2>
+    </div>
+    <div class="cmp">
+      <div class="cmp-row cmp-head">
+        <div class="cmp-cell"></div>
+        <div class="cmp-cell">Курс по нейросетям</div>
+        <div class="cmp-cell">AI-гуру с хайпа</div>
+        <div class="cmp-cell me">Я</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-cell rowlabel">Под кого</div>
+        <div class="cmp-cell dim" data-l="Курс">записан для всех</div>
+        <div class="cmp-cell dim" data-l="AI-гуру">для всех</div>
+        <div class="cmp-cell me" data-l="Я">1-на-1 под твои задачи</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-cell rowlabel">Содержание</div>
+        <div class="cmp-cell dim" data-l="Курс">вода, общие советы</div>
+        <div class="cmp-cell dim" data-l="AI-гуру">красивые обещания</div>
+        <div class="cmp-cell me" data-l="Я">только по делу</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-cell rowlabel">Что дальше</div>
+        <div class="cmp-cell dim" data-l="Курс">«купи следующий»</div>
+        <div class="cmp-cell dim" data-l="AI-гуру">продаёт мечту</div>
+        <div class="cmp-cell me" data-l="Я">конкретный план + конспект</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-cell rowlabel">Делает ли сам</div>
+        <div class="cmp-cell dim" data-l="Курс">—</div>
+        <div class="cmp-cell dim" data-l="AI-гуру">показывает результат, не процесс</div>
+        <div class="cmp-cell me" data-l="Я">сам строю ИИ-инструменты руками</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Почему мне можно верить</span>
+      <h2>Я не рассказываю про ИИ. Я им работаю каждый день</h2>
+    </div>
+    <div class="proof-grid">
+      <div class="proof">
+        <span class="tag">Свой инструмент</span>
+        <p>Собрал на своём маке аналог платной диктовки Wispr Flow ($180/год) — за пару часов. Пользуюсь каждый день.</p>
+      </div>
+      <div class="proof">
+        <span class="tag">Приложение за вечер</span>
+        <p>За один вечер собрал рабочее приложение-виджет для iPhone — без опыта в разработке. Стоит на телефоне.</p>
+      </div>
+      <div class="proof">
+        <span class="tag">Навыки для ИИ</span>
+        <p>Написал 8 «навыков» для ИИ под конкретные проекты — правила, по которым нейросеть работает как обученный сотрудник, а не «как получится».</p>
+      </div>
+      <div class="proof">
+        <span class="tag">Контент-конвейер</span>
+        <p>Конвейер для YouTube-канала: из часового видео — пачка готовых вертикальных роликов, обложек и описаний. По правилам, а не вручную.</p>
+      </div>
+    </div>
+    <p class="pullquote">«Главный навык с ИИ — всегда спрашивать: а можно ли это сделать самому?»</p>
+    <p class="proof-closer">До ИИ — маркетинг и операционка офлайн-ивентов на 1000 человек. <b>Я не теоретик.</b></p>
+  </div>
+</section>
+
+<!-- ============================================================
+     ПЛЕЙСХОЛДЕР ДЛЯ V: сюда вставить РЕАЛЬНЫЕ отзывы первых клиентов
+     (с именем/нишей и, если есть, цифрой «было → стало»).
+     Это №1 усиление лендинга. Фейковые отзывы НЕ ставить —
+     у этой аудитории прямой триггер недоверия «отзывы как боты».
+     ============================================================ -->
+
+<!-- WHAT YOU GET -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Результат</span>
+      <h2>Что ты получишь за один разговор</h2>
+    </div>
+    <div class="benefits">
+      <div class="benefit"><span class="ic">✓</span><div><b>Понимание, как ИИ и агенты работают в твоём деле</b><span>Перестаёшь бояться и чувствовать, что отстаёшь.</span></div></div>
+      <div class="benefit"><span class="ic">✓</span><div><b>Карта: 2–3 точки, куда внедрить ИИ первыми</b><span>Знаешь, с чего начать завтра, без паралича выбора.</span></div></div>
+      <div class="benefit"><span class="ic">✓</span><div><b>Конкретные инструменты и промпты под твои задачи</b><span>Не «вдохновение», а рабочие штуки, которые можно скопировать.</span></div></div>
+      <div class="benefit"><span class="ic">✓</span><div><b>Бонус: запись звонка + письменный конспект-чек-лист</b><span>Не держишь в голове — вернёшься и сделаешь.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHOM -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Честно</span>
+      <h2>Кому это подходит, а кому нет</h2>
+    </div>
+    <div class="cols2">
+      <div class="qcard yes">
+        <h3>✓ Подходит, если ты</h3>
+        <ul>
+          <li><span class="m">→</span>Эксперт, предприниматель, коуч, владелец небольшого дела</li>
+          <li><span class="m">→</span>Чувствуешь, что отстаёшь, и хочешь разобраться под СВОИ задачи</li>
+          <li><span class="m">→</span>Готов внедрять сам — нужен проводник, а не «сделайте за меня»</li>
+        </ul>
+      </div>
+      <div class="qcard no">
+        <h3>✕ Не подходит, если ты</h3>
+        <ul>
+          <li><span class="m">✕</span>Ищешь «нажми кнопку — денег стало в 2 раза больше». ИИ так не работает.</li>
+          <li><span class="m">✕</span>Нужна техническая интеграция с 1С/CRM или чат-бот на сайт — это не моя зона.</li>
+          <li><span class="m">✕</span>Хочешь, чтобы всё сделали за тебя. Я показываю и даю инструменты — работаешь ты.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Сомнения</span>
+      <h2>Частые сомнения</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Зачем платить, если всё есть бесплатно на ютубе? <span class="pm">+</span></summary>
+        <p>На ютубе — тысячи часов «для всех». Ты платишь не за информацию, а за то, что за 90 минут отберут нужное именно тебе и покажут на твоём примере. Экономишь недели тыканья вслепую.</p>
+      </details>
+      <details>
+        <summary>А вдруг это развод, как курсы? <span class="pm">+</span></summary>
+        <p>Поэтому: не увидел пользы в первые 20 минут — не платишь. И платишь ты за разговор и конкретный план, а не за «доступ к закрытому клубу».</p>
+      </details>
+      <details>
+        <summary>Будет вода и общие советы? <span class="pm">+</span></summary>
+        <p>Нет. Разговор строится вокруг твоих задач, на выходе — письменный конспект с конкретными шагами. Воду в конспект не запишешь.</p>
+      </details>
+      <details>
+        <summary>Я не технарь, гуманитарий — мне не дано? <span class="pm">+</span></summary>
+        <p>Я тоже не программист. Объясняю по-человечески, без терминов. Если я за вечер собрал приложение без опыта — разберёшься и ты.</p>
+      </details>
+      <details>
+        <summary>Не поздно ли начинать? <span class="pm">+</span></summary>
+        <p>Сейчас — самый ранний момент, который у тебя будет. Через год отставание больше. Заменит не ИИ, а человек, который его освоил.</p>
+      </details>
+      <details>
+        <summary>У меня специфическое дело, не сработает. <span class="pm">+</span></summary>
+        <p>Перед звонком разберусь, чем ты занимаешься. Если пойму, что не помогу, — скажу честно до оплаты, а не возьму деньги.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE -->
+<section class="price-section">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:center;margin:0 auto">
+      <span class="eyebrow">Условия</span>
+      <h2>Сколько стоит</h2>
+    </div>
+    <div class="price-card">
+      <ul>
+        <li><span class="c">✓</span> Консультация 1-на-1, ~90 минут</li>
+        <li><span class="c">✓</span> Запись звонка + письменный конспект-чек-лист «что внедрить»</li>
+        <li><span class="c">✓</span> Гарантия: первые 20 минут не зашло — не платишь</li>
+      </ul>
+      <div class="price-tag"><span class="cur"></span>7 000 ₽</div>
+      <div class="price-note">за консультацию (цена — предварительная)</div>
+      <div class="scarcity"><span class="dot"></span> Я один, не агентство. Беру несколько консультаций в неделю.</div>
+      <div><a href="https://t.me/vad6272" class="btn btn--lg">Записаться на консультацию</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="wrap">
+    <h2>Хватит тонуть в курсах и обещаниях</h2>
+    <p>Один разговор — и у тебя есть план под твои задачи.</p>
+    <a href="https://t.me/vad6272" class="btn btn--lg">Записаться на консультацию</a>
+    <span class="risk">Не зашло в первые 20 минут — <b>не платишь.</b></span>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>Вадим Бондаренко — помогаю экспертам и предпринимателям применить ИИ в работе.<br><span class="muted">До ИИ — маркетинг и операционка офлайн-ивентов.</span></div>
+    <div>Telegram: <a href="https://t.me/vad6272" class="tg">@vad6272</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
